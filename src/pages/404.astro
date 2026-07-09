@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
+import { withBase } from '../lib/url';
 ---
 
 <BaseLayout
@@ -13,8 +14,6 @@ import CTAButton from '../components/CTAButton.astro';
     <p class="mt-4 text-[var(--text-muted)]">
       The page you're looking for doesn't exist or may have moved.
     </p>
-    <CTAButton href={import.meta.env.BASE_URL} variant="primary" class="mt-8">
-      Back to home
-    </CTAButton>
+    <CTAButton href={withBase('/')} variant="primary" class="mt-8"> Back to home </CTAButton>
   </section>
 </BaseLayout>

@@ -1,16 +1,16 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import DisciplineBadge from './DisciplineBadge.astro';
+import { withBase } from '../lib/url';
 
 interface Props {
   entry: CollectionEntry<'case-studies'>;
 }
 const { entry } = Astro.props;
-const base = import.meta.env.BASE_URL;
 ---
 
 <a
-  href={`${base}work/${entry.data.discipline}/${entry.id}`}
+  href={withBase(`/work/${entry.data.discipline}/${entry.id}`)}
   class="group hover:border-accent-500 flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 transition-colors"
 >
   <DisciplineBadge discipline={entry.data.discipline} class="self-start" />

@@ -10,6 +10,7 @@ import { achievements } from '../data/achievements';
 import { experience } from '../data/experience';
 import { problemsICanSolve } from '../data/capabilities';
 import { DISCIPLINES, type Discipline } from '../data/types';
+import { withBase } from '../lib/url';
 
 interface Props {
   discipline: Discipline;
@@ -28,7 +29,6 @@ const skillGroup = skillGroups.find((g) => g.discipline === discipline);
 const disciplineAchievements = achievements.filter((a) => a.discipline === discipline);
 const disciplineExperience = experience.filter((e) => e.disciplines.includes(discipline));
 const disciplineProblems = problemsICanSolve.find((p) => p.discipline === discipline);
-const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -129,8 +129,8 @@ const base = import.meta.env.BASE_URL;
   >
     <SectionHeading id="discipline-contact-heading" title="Interested in working together?" />
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-      <CTAButton href={`${base}resumes`} variant="primary">View Résumés</CTAButton>
-      <CTAButton href={`${base}#contact`} variant="secondary">Contact Me</CTAButton>
+      <CTAButton href={withBase('/resumes')} variant="primary">View Résumés</CTAButton>
+      <CTAButton href={withBase('/#contact')} variant="secondary">Contact Me</CTAButton>
     </div>
   </section>
 </BaseLayout>

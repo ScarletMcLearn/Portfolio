@@ -2,16 +2,16 @@
 import { profile } from '../data/profile';
 import { socialLinks } from '../data/social';
 import CTAButton from './CTAButton.astro';
+import { withBase } from '../lib/url';
 
-const base = import.meta.env.BASE_URL;
 const githubLink = socialLinks.find((l) => l.icon === 'github');
 const linkedinLink = socialLinks.find((l) => l.icon === 'linkedin');
 const kaggleLink = socialLinks.find((l) => l.icon === 'kaggle');
 
 const pathways = [
-  { href: `${base}software-engineering`, label: 'Explore Software Engineering' },
-  { href: `${base}quality-engineering`, label: 'Explore Quality Engineering' },
-  { href: `${base}data-science-ai`, label: 'Explore Data Science & AI' },
+  { href: withBase('/software-engineering'), label: 'Explore Software Engineering' },
+  { href: withBase('/quality-engineering'), label: 'Explore Quality Engineering' },
+  { href: withBase('/data-science-ai'), label: 'Explore Data Science & AI' },
 ];
 ---
 
@@ -28,9 +28,9 @@ const pathways = [
     </p>
 
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-      <CTAButton href={`${base}work`} variant="primary">View Case Studies</CTAButton>
-      <CTAButton href={`${base}resumes`} variant="secondary">View Résumés</CTAButton>
-      <CTAButton href={`${base}#contact`} variant="secondary">Contact Me</CTAButton>
+      <CTAButton href={withBase('/work')} variant="primary">View Case Studies</CTAButton>
+      <CTAButton href={withBase('/resumes')} variant="secondary">View Résumés</CTAButton>
+      <CTAButton href={withBase('/#contact')} variant="secondary">Contact Me</CTAButton>
     </div>
 
     <div class="mt-6 flex flex-wrap items-center justify-center gap-5 text-sm">

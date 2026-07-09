@@ -28,6 +28,16 @@ test.describe('Homepage', () => {
     await expect(page.getByRole('heading', { name: 'What colleagues say' })).toHaveCount(0);
   });
 
+  test('footer copyright line renders with correct spacing', async ({ page }) => {
+    // Regression test: an Astro whitespace-collapse issue previously rendered
+    // this as "© 2026Syed Shams Elahi" (missing space) when two adjacent
+    // expressions were split across lines in the template.
+    await page.goto('/');
+    const footerText = await page.locator('footer').innerText();
+    expect(footerText).not.toMatch(/\d{4}[A-Za-z]/);
+    expect(footerText).toContain('Syed Shams Elahi. Built with Astro');
+  });
+
   test('has no obvious horizontal overflow at common widths', async ({ page }) => {
     for (const width of [320, 375, 768, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });

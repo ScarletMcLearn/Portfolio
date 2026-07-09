@@ -39,7 +39,11 @@ const websiteJsonLd = {
   url: siteURL,
 };
 
-const structuredData = [personJsonLd, websiteJsonLd, ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])];
+const structuredData = [
+  personJsonLd,
+  websiteJsonLd,
+  ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
+];
 ---
 
 <!doctype html>

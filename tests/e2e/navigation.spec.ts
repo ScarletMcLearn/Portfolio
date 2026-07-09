@@ -19,6 +19,32 @@ test.describe('Navigation', () => {
     await skipLink.click();
     await expect(page.locator('#main-content')).toBeInViewport();
   });
+
+  test('base-prefixed links have a path separator between base and path', async ({ page }) => {
+    // Regression test: a previous version concatenated base + path without a
+    // slash (e.g. href="/Portfoliowork" instead of "/Portfolio/work") whenever
+    // BASE_URL had no trailing slash. Assert every internal link's pathname is
+    // segmented correctly by checking known nav destinations resolve exactly.
+    await page.goto('/');
+    await expect(
+      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Work' }),
+    ).toHaveAttribute('href', /\/work$/);
+    await expect(
+      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Résumés' }),
+    ).toHaveAttribute('href', /\/resumes$/);
+    await expect(page.getByRole('link', { name: 'Explore Software Engineering' })).toHaveAttribute(
+      'href',
+      /\/software-engineering$/,
+    );
+    await expect(page.getByRole('link', { name: 'View Case Studies' })).toHaveAttribute(
+      'href',
+      /\/work$/,
+    );
+    await expect(page.getByRole('link', { name: 'View Résumés' })).toHaveAttribute(
+      'href',
+      /\/resumes$/,
+    );
+  });
 });
 
 test.describe('Mobile navigation', () => {

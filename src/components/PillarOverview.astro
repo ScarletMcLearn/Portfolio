@@ -1,21 +1,21 @@
 ---
-const base = import.meta.env.BASE_URL;
+import { withBase } from '../lib/url';
 
 const pillars = [
   {
-    href: `${base}software-engineering`,
+    href: withBase('/software-engineering'),
     title: 'Software Engineering',
     description:
       'Backend services, REST APIs, database design, and developer tooling — built to be maintainable, not just demoable.',
   },
   {
-    href: `${base}quality-engineering`,
+    href: withBase('/quality-engineering'),
     title: 'Quality Engineering',
     description:
       'Test architecture, automation platforms, API/performance safeguards, and CI/CD quality gates for complex products.',
   },
   {
-    href: `${base}data-science-ai`,
+    href: withBase('/data-science-ai'),
     title: 'Data Science & AI',
     description:
       'Applied machine learning, NLP, and predictive modeling across a sustained public practice spanning classical ML to LLMs.',

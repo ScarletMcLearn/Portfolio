@@ -3,6 +3,7 @@ import { render, type CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import DisciplineBadge from '../components/DisciplineBadge.astro';
 import CTAButton from '../components/CTAButton.astro';
+import { withBase } from '../lib/url';
 
 interface Props {
   entry: CollectionEntry<'case-studies'>;
@@ -11,7 +12,6 @@ interface Props {
 const { entry } = Astro.props;
 const { data } = entry;
 const { Content } = await render(entry);
-const base = import.meta.env.BASE_URL;
 
 const confidentialityLabel: Record<typeof data.confidentiality, string> = {
   public: 'Public work',
@@ -28,7 +28,7 @@ const evidenceLabel: Record<typeof data.evidenceLevel, string> = {
 
 <BaseLayout title={`${data.title} — Syed Shams Elahi`} description={data.summary}>
   <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-    <a href={`${base}work`} class="text-accent-600 text-sm font-semibold hover:underline"
+    <a href={withBase('/work')} class="text-accent-600 text-sm font-semibold hover:underline"
       >&larr; Back to Work</a
     >
 
@@ -95,8 +95,8 @@ const evidenceLabel: Record<typeof data.evidenceLevel, string> = {
     </div>
 
     <div class="mt-12 flex flex-wrap gap-3">
-      <CTAButton href={`${base}work`} variant="secondary">View more case studies</CTAButton>
-      <CTAButton href={`${base}#contact`} variant="primary">Contact me</CTAButton>
+      <CTAButton href={withBase('/work')} variant="secondary">View more case studies</CTAButton>
+      <CTAButton href={withBase('/#contact')} variant="primary">Contact me</CTAButton>
     </div>
   </article>
 </BaseLayout>
