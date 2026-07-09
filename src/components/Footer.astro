@@ -1,0 +1,37 @@
+---
+import { socialLinks } from '../data/social';
+import { profile } from '../data/profile';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-[var(--border)] bg-[var(--bg-subtle)]">
+  <div
+    class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6"
+  >
+    <div>
+      <p class="font-semibold">{profile.name}</p>
+      <p class="text-sm text-[var(--text-muted)]">{profile.umbrellaTitle}</p>
+    </div>
+    <nav aria-label="Social links" class="flex flex-wrap gap-4">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.url}
+            class="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)]"
+            target={link.icon === 'email' ? undefined : '_blank'}
+            rel={link.icon === 'email' ? undefined : 'noopener noreferrer'}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+  <div
+    class="border-t border-[var(--border)] px-4 py-4 text-center text-xs text-[var(--text-muted)] sm:px-6"
+  >
+    &copy; {year}
+    {profile.name}. Built with Astro, TypeScript, and Tailwind CSS.
+  </div>
+</footer>

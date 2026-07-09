@@ -1,0 +1,29 @@
+---
+import DisciplineLayout from '../layouts/DisciplineLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { dataScienceProjects } from '../data/projects';
+---
+
+<DisciplineLayout
+  discipline="data-science-ai"
+  title="Data Science & AI — Syed Shams Elahi"
+  description="Applied machine learning, NLP, and predictive modeling work from Syed Shams Elahi — Data Scientist and Applied AI practitioner with a sustained public notebook portfolio."
+  intro="I apply machine learning and data-science techniques to real problems — from classical classifiers to transformer-based NLP and CNNs — documented through a sustained public practice of applied notebooks."
+>
+  <section
+    slot="before-work"
+    class="mx-auto max-w-6xl px-4 py-16 sm:px-6"
+    aria-labelledby="notebooks-heading"
+  >
+    <SectionHeading
+      id="notebooks-heading"
+      eyebrow="Public Practice"
+      title="Applied notebook portfolio"
+      description="A curated sample of public notebooks. These are documented as applied-practice and technique-demonstration work, not audited production research — see each card for evaluation approach and limitations."
+    />
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {dataScienceProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</DisciplineLayout>

@@ -1,0 +1,31 @@
+---
+import type { SkillGroup } from '../data/types';
+
+interface Props {
+  group: SkillGroup;
+}
+const { group } = Astro.props;
+---
+
+<div class="flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+  <h3 class="text-lg font-semibold">{group.title}</h3>
+  <p class="mt-1 text-sm text-[var(--text-muted)]">{group.description}</p>
+  <dl class="mt-5 space-y-4">
+    {
+      group.subgroups.map((sub) => (
+        <div>
+          <dt class="text-xs font-semibold tracking-wide text-[var(--text-muted)] uppercase">
+            {sub.name}
+          </dt>
+          <dd class="mt-1.5 flex flex-wrap gap-1.5">
+            {sub.items.map((item) => (
+              <span class="rounded-md bg-[var(--bg-subtle)] px-2 py-1 text-xs font-medium">
+                {item}
+              </span>
+            ))}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</div>

@@ -1,0 +1,100 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import Monogram from './Monogram.astro';
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/#expertise', label: 'Expertise' },
+  { href: '/work', label: 'Work' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#about', label: 'About' },
+  { href: '/resumes', label: 'Résumés' },
+  { href: '/#contact', label: 'Contact' },
+];
+
+const base = import.meta.env.BASE_URL;
+const prefix = (href: string) => (href === '/' ? base : `${base}${href.slice(1)}`);
+---
+
+<header class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+    <a href={base} class="flex items-center gap-2 font-semibold" aria-label="Home">
+      <Monogram size={36} />
+      <span class="hidden sm:inline">Syed Shams Elahi</span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden items-center gap-6 md:flex">
+      {
+        navItems.map((item) => (
+          <a
+            href={prefix(item.href)}
+            class="text-sm font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text)]"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <ThemeToggle />
+      <button
+        id="mobile-nav-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] md:hidden"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          class="h-5 w-5"
+        >
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav
+    id="mobile-nav"
+    aria-label="Mobile"
+    class="hidden flex-col gap-1 border-t border-[var(--border)] px-4 py-3 md:hidden"
+  >
+    {
+      navItems.map((item) => (
+        <a
+          href={prefix(item.href)}
+          class="rounded-md px-2 py-2 text-sm font-medium text-[var(--text-muted)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text)]"
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const nav = document.getElementById('mobile-nav');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = nav?.classList.contains('flex');
+    nav?.classList.toggle('hidden', isOpen);
+    nav?.classList.toggle('flex', !isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.add('hidden');
+      nav.classList.remove('flex');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

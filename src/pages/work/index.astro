@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import { DISCIPLINES, type Discipline } from '../../data/types';
+
+const allCaseStudies = await getCollection('case-studies');
+const disciplineOrder: Discipline[] = [
+  'software-engineering',
+  'quality-engineering',
+  'data-science-ai',
+];
+
+const grouped = disciplineOrder.map((d) => ({
+  discipline: d,
+  meta: DISCIPLINES[d],
+  entries: allCaseStudies
+    .filter((c) => c.data.discipline === d)
+    .sort((a, b) => a.data.order - b.data.order),
+}));
+---
+
+<BaseLayout
+  title="Work — Case Studies | Syed Shams Elahi"
+  description="Case studies spanning software engineering, quality engineering, and data science & AI."
+>
+  <section class="mx-auto max-w-4xl px-4 pt-16 pb-8 text-center sm:px-6 sm:pt-24">
+    <SectionHeading
+      eyebrow="Work"
+      title="Case studies across three disciplines"
+      description="Filter by discipline, or browse everything below. All content is available without JavaScript."
+    />
+  </section>
+
+  <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+    <div id="work-filters" class="flex flex-wrap justify-center gap-2">
+      <button
+        type="button"
+        data-filter="all"
+        class="filter-btn is-active rounded-full border border-[var(--border)] px-4 py-2 text-sm font-semibold"
+      >
+        All
+      </button>
+      {
+        disciplineOrder.map((d) => (
+          <button
+            type="button"
+            data-filter={d}
+            class="filter-btn rounded-full border border-[var(--border)] px-4 py-2 text-sm font-semibold"
+          >
+            {DISCIPLINES[d].shortLabel}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  {
+    grouped.map((group) => (
+      <section
+        class="work-section mx-auto max-w-6xl px-4 py-10 sm:px-6"
+        data-discipline={group.discipline}
+        aria-labelledby={`${group.discipline}-heading`}
+      >
+        <h2 id={`${group.discipline}-heading`} class="text-2xl font-bold">
+          {group.meta.label}
+        </h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {group.entries.map((entry) => (
+            <CaseStudyCard entry={entry} />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const sections = document.querySelectorAll<HTMLElement>('.work-section');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      sections.forEach((section) => {
+        const matches = filter === 'all' || section.dataset.discipline === filter;
+        section.classList.toggle('hidden', !matches);
+      });
+    });
+  });
+</script>
+
+<style>
+  .filter-btn.is-active {
+    background-color: var(--color-accent-600, #2f5fd6);
+    color: white;
+    border-color: transparent;
+  }
+</style>

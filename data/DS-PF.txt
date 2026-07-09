@@ -1,0 +1,369 @@
+
+Name	Last commit message	Last commit date
+..
+a-comprehensive-guide-to-advanced-regression.xpynb
+Add files via upload
+last year
+a-data-science-framework-to-achieve-99-accuracy.xpynb
+Add files via upload
+last year
+a-reference-guide-to-feature-engineering-methods.ipynb
+Add files via upload
+last year
+amazon-reviews-sentiment-analysis-accuracy=0.95.ipynb
+Add files via upload
+10 months ago
+android-malware-prediction-accuracy-99.ipynb
+Add files via upload
+last year
+article-classification-tf-idf-k-means.ipynb
+Add files via upload
+10 months ago
+automated-feature-engineering.ipynb
+Add files via upload
+last year
+bank-customer-k-modes-clustering.ipynb
+Add files via upload
+last year
+bert-text-classification-accuracy-98.ipynb
+Add files via upload
+last year
+binary-text-classification-accuracy-97.ipynb
+Add files via upload
+last year
+blog-recommendation-using-tf-idf.ipynb
+Add files via upload
+last year
+book-recommendation-system-k-nearest-neighbours.ipynb
+Add files via upload
+last year
+book-recommendation-system-with-machine-learning.ipynb
+Add files via upload
+last year
+brain-tumor-binary-classification-cnn-accuracy-99.ipynb
+Add files via upload
+last year
+breast-cancer-prediction-accuracy-98-24.ipynb
+Add files via upload
+last year
+breast-cancer-prediction-logistic-regression-a-94.ipynb
+Add files via upload
+last year
+cluster-analysis-goodreads-reading-list.ipynb
+Add files via upload
+last year
+cluster-analysis-of-breast-cancer-data.ipynb
+Add files via upload
+last year
+cluster-analysis-using-multiple-models.ipynb
+Add files via upload
+last year
+cluster-kmeans-hierarchical-centroids-profiling.ipynb
+Add files via upload
+last year
+clustering-and-dimensionality-reduction.ipynb
+Add files via upload
+last year
+clustering-and-manifold-learning.ipynb
+Add files via upload
+last year
+clustering-documents-tfidf-and-k-means.ipynb
+Add files via upload
+last year
+clustering-wine-k-means-pca-umap.ipynb
+Add files via upload
+last year
+cnn-brain-tumor-classification-99-accuracy.xpynb
+Add files via upload
+last year
+color-classification-svm-classifier-accuracy=0.78.ipynb
+Add files via upload
+10 months ago
+comprehensive-data-exploration-with-python.xpynb
+Add files via upload
+last year
+content-based-recommendation-system.ipynb
+Add files via upload
+last year
+covid-19-tweets-analysis-97-accuracy.xpynb
+Add files via upload
+last year
+customer-churn-prediction-95-accuracy.ipynb
+Add files via upload
+last year
+diabetes-binary-classification-accuracy-100.ipynb
+Add files via upload
+last year
+diabetics-prediction-accuracy-98.ipynb
+Add files via upload
+last year
+different-clustering-algorithms.ipynb
+Add files via upload
+last year
+disease-prediction-decison-tree-accuracy=0.98.ipynb
+Add files via upload
+10 months ago
+disease-prediction-xgbclassifier-accuracy-98.ipynb
+Add files via upload
+10 months ago
+drug-classification-99-accuracy.ipynb
+Add files via upload
+last year
+eastnetic-assessment.ipynb
+Add files via upload
+last year
+eda-customer-shopping-latest-trends-analysis.ipynb
+Add files via upload
+10 months ago
+efficientnetb3-brain-tumor-classification-99.xpynb
+Add files via upload
+last year
+employee-attrition-random-forest-acc-0-82.ipynb
+Add files via upload
+10 months ago
+ensemble-learning-lib-mlens-99-accuracy.ipynb
+Add files via upload
+last year
+fake-face-binary-classification-cnn-accuracy-99.ipynb
+Add files via upload
+last year
+fake-news-binary-classification-99-accuracy.ipynb
+Add files via upload
+last year
+feature-engineering-xgboost.ipynb
+Add files via upload
+10 months ago
+feature-scaling.ipynb
+Add files via upload
+last year
+feature-selection-guide.xpynb
+Add files via upload
+last year
+fetal-health-classification-93-accuracy.ipynb
+Add files via upload
+last year
+fine-tuning-llama-2-qlora-llm-custom-dataset.ipynb
+Add files via upload
+last year
+football-news-prediction-accuracy-95.ipynb
+Add files via upload
+last year
+fraud-prediction-accuracy-97.ipynb
+Add files via upload
+last year
+getting-started-with-llms.xpynb
+Add files via upload
+last year
+gold-price-prediction-lstm-accuracy-96.ipynb
+Add files via upload
+last year
+guide-97-acc-clean-ftrs-ml-fr-xgb-fc-s.ipynb
+Add files via upload
+last year
+guide-to-data-science-framework-to-achieve-99-accuracy.ipynb
+Add files via upload
+10 months ago
+guide-to-feature-selection-and-data-visualization.ipynb
+Add files via upload
+10 months ago
+guide-xgboost-hyperparameters-tuning.ipynb
+Add files via upload
+10 months ago
+heart-disease-prediction-accuracy-92.ipynb
+Add files via upload
+10 months ago
+heart-disease-prediction-accuracy-95.ipynb
+Add files via upload
+10 months ago
+heart-disease-prediction-using-h20.ipynb
+Add files via upload
+last year
+income-classification-87-accuracy.ipynb
+Add files via upload
+last year
+income-classification-88-accuracy.ipynb
+Add files via upload
+last year
+insurance-premium-prediction-rf-accuracy-90.ipynb
+Add files via upload
+last year
+insurance-premium-regression-rf-rmse-0-56.ipynb
+Add files via upload
+10 months ago
+iris-prediction-using-k-means-clustering.ipynb
+Add files via upload
+last year
+k-means-clustering-and-3d-visualization.ipynb
+Add files via upload
+last year
+kmeans-clustering-customer-data.ipynb
+Add files via upload
+last year
+lazy-classifier-model.ipynb
+Add files via upload
+last year
+length-of-stay-prediction-rfc-accuracy-99-71.ipynb
+Add files via upload
+last year
+llm-04a-fine-tuning-llms.xpynb
+Add files via upload
+last year
+loan-binary-classification-100-accuracy.ipynb
+Add files via upload
+last year
+machine-defect-prediction-96-accuracy.ipynb
+Add files via upload
+last year
+mental-health-binary-classification-accu-92.ipynb
+Add files via upload
+10 months ago
+movie-recommendation-huggingface.ipynb
+Add files via upload
+last year
+movie-recommendation-system-2.ipynb
+Add files via upload
+last year
+movie-recommendation-system-multi-model.ipynb
+Add files via upload
+10 months ago
+movie-recommendation-system-tf-idf-cos-similarity.ipynb
+Add files via upload
+last year
+mushroom-classification-100-accuracy.ipynb
+Add files via upload
+last year
+music-recommendation-system-using-spotify-dataset.xpynb
+Add files via upload
+last year
+netflix-clustering.ipynb
+Add files via upload
+last year
+obesity-prediction-accuracy-99-6.ipynb
+Add files via upload
+last year
+paris-house-category-classification-accuracy-100.ipynb
+Add files via upload
+last year
+parkinsons-classification-accuray=0.99.ipynb
+Add files via upload
+10 months ago
+parkinsons-disease-binary-classification-accu-99.ipynb
+Add files via upload
+last year
+patient-survival-binaryprediction-accuracy-92-34.ipynb
+Add files via upload
+last year
+popular-unsupervised-clustering-algorithms.ipynb
+Add files via upload
+last year
+product-recommendation-hybrid_cf_tfidf.ipynb
+Add files via upload
+10 months ago
+product-recommendation-k-means-clustering.ipynb
+Add files via upload
+last year
+product-recommendation-using-word2vec.ipynb
+Add files via upload
+last year
+pseudo-labeling-qda-acc-0-969.ipynb
+Add files via upload
+10 months ago
+random-forest-student-stress-level-classification.ipynb
+Add files via upload
+last year
+real-estate-price-regression-r-2-0-8.ipynb
+Add files via upload
+last year
+recommendation-system-correlation-matrix.ipynb
+Add files via upload
+last year
+recommendation-system-lightfm.ipynb
+Add files via upload
+last year
+recommendation-system-movie-2.xpynb
+Add files via upload
+last year
+recommendation-system-movie.xpynb
+Add files via upload
+last year
+recommendation-system-netflix-movie.xpynb
+Add files via upload
+last year
+recommender-system-using-auto-encoders.ipynb
+Add files via upload
+last year
+restaurant-recommendation-using-tf-idf.ipynb
+Add files via upload
+last year
+salary-regression-96-accuracy.ipynb
+Add files via upload
+last year
+sales-cluster-and-analysis.ipynb
+Add files via upload
+last year
+shop-customer-clustering.ipynb
+Add files via upload
+last year
+skin-disease-binary-classification-99-accuracy.ipynb
+Add files via upload
+last year
+sleep-duration-and-quality-prediction - R^2=99%.ipynb
+Add files via upload
+10 months ago
+sleep-hours-regression-mse-0-0115.ipynb
+Add files via upload
+10 months ago
+spaceship-titanic-eda-27-different-models.ipynb
+Add files via upload
+10 months ago
+spam-classification-multinomialnb-99-accuracy.ipynb
+Add files via upload
+last year
+students-grade-predictor-random-forest.ipynb
+Add files via upload
+last year
+tabular-binary-classification-82-accuracy.ipynb
+Add files via upload
+last year
+techniques-and-metrics-for-imbalanced-dataset.ipynb
+Add files via upload
+last year
+text-classification-multiplemodels-accuracy-96-24.ipynb
+Add files via upload
+last year
+text-classification-sklearn-models-accuracy-96.ipynb
+Add files via upload
+last year
+text-classification-using-keras-90-accuracy.xpynb
+Add files via upload
+last year
+text-clustering-and-labeling-usingsentence-transfo.ipynb
+Add files via upload
+last year
+ticket-classification-tfidf-nmf-logreg-acc-81.ipynb
+Add files via upload
+10 months ago
+titanic-advanced-feature-engineering.ipynb
+Add files via upload
+10 months ago
+titanic-classfication-using-lightautoml.ipynb
+Add files via upload
+last year
+topic-identification-flan-t5-small-tweet-topic-mdl.ipynb
+Add files via upload
+last year
+unsupervised-k-means-multidimensional-clusters.ipynb
+Add files via upload
+last year
+unsupervised-text-selection.ipynb
+Add files via upload
+last year
+visualizing-high-dimensional-clusters.ipynb
+Add files via upload
+last year
+weather-classification-accuracy-99.ipynb
+Add files via upload
+last year
+wine-multiclass-classification-97-5-accuracy.xpynb
+Add files via upload
+last year

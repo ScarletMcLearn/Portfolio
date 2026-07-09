@@ -1,0 +1,16 @@
+---
+import { DISCIPLINES, type Discipline } from '../data/types';
+
+interface Props {
+  discipline: Discipline;
+  class?: string;
+}
+const { discipline, class: className = '' } = Astro.props;
+const meta = DISCIPLINES[discipline];
+---
+
+<span
+  class={`inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] px-3 py-1 text-xs font-semibold text-[var(--text-muted)] ${className}`}
+>
+  {meta.shortLabel}
+</span>

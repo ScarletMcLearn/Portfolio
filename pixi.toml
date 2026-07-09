@@ -1,0 +1,23 @@
+[workspace]
+authors = ["Scarlet McLearn <getratulnow@gmail.com>"]
+channels = ["conda-forge"]
+name = "portfolio"
+platforms = ["win-64", "linux-64"]
+version = "0.1.0"
+
+[dependencies]
+nodejs = "==22.23.1"
+pnpm = "==10.33.2"
+
+[tasks]
+install = "pnpm install --frozen-lockfile"
+dev = "pnpm dev"
+build = "pnpm build"
+preview = "pnpm preview"
+typecheck = "pnpm typecheck"
+lint = "pnpm lint"
+"lint:fix" = "pnpm lint:fix"
+format = "pnpm format"
+"format:check" = "pnpm format:check"
+"test:e2e" = "pnpm test:e2e"
+"playwright:install" = "pnpm exec playwright install --with-deps chromium"

@@ -1,0 +1,102 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import DisciplineBadge from '../components/DisciplineBadge.astro';
+import CTAButton from '../components/CTAButton.astro';
+
+interface Props {
+  entry: CollectionEntry<'case-studies'>;
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL;
+
+const confidentialityLabel: Record<typeof data.confidentiality, string> = {
+  public: 'Public work',
+  anonymized: 'Anonymized — client/employer not named',
+  representative: 'Representative capability case study',
+};
+
+const evidenceLabel: Record<typeof data.evidenceLevel, string> = {
+  high: 'High confidence',
+  medium: 'Medium confidence',
+  low: 'Low confidence / representative',
+};
+---
+
+<BaseLayout title={`${data.title} — Syed Shams Elahi`} description={data.summary}>
+  <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <a href={`${base}work`} class="text-accent-600 text-sm font-semibold hover:underline"
+      >&larr; Back to Work</a
+    >
+
+    <div class="mt-6 flex flex-wrap gap-2">
+      <DisciplineBadge discipline={data.discipline} />
+      <span
+        class="inline-flex items-center rounded-full border border-[var(--border)] px-3 py-1 text-xs font-semibold text-[var(--text-muted)]"
+      >
+        {data.projectType.replace('-', ' ')}
+      </span>
+    </div>
+
+    <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{data.title}</h1>
+    <p class="mt-4 text-lg text-[var(--text-muted)]">{data.summary}</p>
+
+    <dl
+      class="mt-8 grid gap-4 rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] p-5 text-sm sm:grid-cols-3"
+    >
+      <div>
+        <dt class="font-semibold">Confidentiality</dt>
+        <dd class="text-[var(--text-muted)]">{confidentialityLabel[data.confidentiality]}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Evidence level</dt>
+        <dd class="text-[var(--text-muted)]">{evidenceLabel[data.evidenceLevel]}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">My role</dt>
+        <dd class="text-[var(--text-muted)]">{data.role}</dd>
+      </div>
+    </dl>
+
+    <div class="prose prose-sm sm:prose-base mt-10 max-w-none">
+      <h2>Context</h2>
+      <p>{data.context}</p>
+      <h2>Problem</h2>
+      <p>{data.problem}</p>
+      <h2>Constraints</h2>
+      <p>{data.constraints}</p>
+
+      <h2>Technologies</h2>
+      <ul class="flex flex-wrap gap-2 !pl-0" style="list-style: none;">
+        {
+          data.technologies.map((t) => (
+            <li class="rounded-md bg-[var(--bg-subtle)] px-2 py-1 text-xs font-medium">{t}</li>
+          ))
+        }
+      </ul>
+
+      <Content />
+
+      <h2>Outcomes</h2>
+      <ul>
+        {data.outcomes.map((o) => <li>{o}</li>)}
+      </ul>
+
+      <h2>Lessons</h2>
+      <ul>
+        {data.lessons.map((l) => <li>{l}</li>)}
+      </ul>
+
+      <h2>What can be discussed publicly</h2>
+      <p>{data.publicEvidence}</p>
+    </div>
+
+    <div class="mt-12 flex flex-wrap gap-3">
+      <CTAButton href={`${base}work`} variant="secondary">View more case studies</CTAButton>
+      <CTAButton href={`${base}#contact`} variant="primary">Contact me</CTAButton>
+    </div>
+  </article>
+</BaseLayout>

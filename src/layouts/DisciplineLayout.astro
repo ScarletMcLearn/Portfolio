@@ -1,0 +1,136 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import SkillGroupCard from '../components/SkillGroupCard.astro';
+import CTAButton from '../components/CTAButton.astro';
+import { skillGroups } from '../data/skills';
+import { achievements } from '../data/achievements';
+import { experience } from '../data/experience';
+import { problemsICanSolve } from '../data/capabilities';
+import { DISCIPLINES, type Discipline } from '../data/types';
+
+interface Props {
+  discipline: Discipline;
+  title: string;
+  description: string;
+  intro: string;
+}
+
+const { discipline, title, description, intro } = Astro.props;
+
+const meta = DISCIPLINES[discipline];
+const caseStudies = (await getCollection('case-studies'))
+  .filter((c) => c.data.discipline === discipline)
+  .sort((a, b) => a.data.order - b.data.order);
+const skillGroup = skillGroups.find((g) => g.discipline === discipline);
+const disciplineAchievements = achievements.filter((a) => a.discipline === discipline);
+const disciplineExperience = experience.filter((e) => e.disciplines.includes(discipline));
+const disciplineProblems = problemsICanSolve.find((p) => p.discipline === discipline);
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="mx-auto max-w-4xl px-4 pt-16 pb-12 text-center sm:px-6 sm:pt-24">
+    <p class="text-accent-600 text-sm font-semibold tracking-wide uppercase">{meta.label}</p>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{meta.tagline}</h1>
+    <p class="mt-6 text-lg text-[var(--text-muted)]">{intro}</p>
+  </section>
+
+  {
+    skillGroup && (
+      <section class="mx-auto max-w-3xl px-4 py-10 sm:px-6" aria-labelledby="capabilities-heading">
+        <SectionHeading id="capabilities-heading" title="Key capabilities" />
+        <div class="mt-8">
+          <SkillGroupCard group={skillGroup} />
+        </div>
+      </section>
+    )
+  }
+
+  <slot name="before-work" />
+
+  {
+    caseStudies.length > 0 && (
+      <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6" aria-labelledby="work-heading">
+        <SectionHeading id="work-heading" title="Selected work" />
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {caseStudies.map((entry) => (
+            <CaseStudyCard entry={entry} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    disciplineAchievements.length > 0 && (
+      <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6" aria-labelledby="achievements-heading">
+        <SectionHeading id="achievements-heading" title="Achievements" />
+        <ul class="mt-8 space-y-4">
+          {disciplineAchievements.map((a) => (
+            <li>
+              <p class="font-semibold">{a.title}</p>
+              <p class="text-sm text-[var(--text-muted)]">{a.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    disciplineExperience.length > 0 && (
+      <section
+        class="mx-auto max-w-3xl px-4 py-16 sm:px-6"
+        aria-labelledby="relevant-experience-heading"
+      >
+        <SectionHeading id="relevant-experience-heading" title="Relevant experience" />
+        <ul class="mt-8 space-y-6">
+          {disciplineExperience.map((role) => (
+            <li class="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 class="font-semibold">{role.role}</h3>
+                <span class="text-xs text-[var(--text-muted)]">
+                  {role.startDate} &ndash; {role.endDate}
+                </span>
+              </div>
+              <p class="text-sm text-[var(--text-muted)]">
+                {role.company} &middot; {role.companyLocation}
+              </p>
+              <p class="mt-2 text-sm">{role.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    disciplineProblems && (
+      <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6" aria-labelledby="problems-heading">
+        <SectionHeading id="problems-heading" title="Problems I can solve" />
+        <ul class="mt-8 space-y-2 text-sm text-[var(--text-muted)]">
+          {disciplineProblems.items.map((item) => (
+            <li class="flex gap-2">
+              <span aria-hidden="true">&bull;</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <section
+    class="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6"
+    aria-labelledby="discipline-contact-heading"
+  >
+    <SectionHeading id="discipline-contact-heading" title="Interested in working together?" />
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+      <CTAButton href={`${base}resumes`} variant="primary">View Résumés</CTAButton>
+      <CTAButton href={`${base}#contact`} variant="secondary">Contact Me</CTAButton>
+    </div>
+  </section>
+</BaseLayout>
