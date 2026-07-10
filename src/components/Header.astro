@@ -65,6 +65,8 @@ const prefix = withBase;
   <nav
     id="mobile-nav"
     aria-label="Mobile"
+    hidden
+    style="display: none;"
     class="hidden flex-col gap-1 border-t border-[var(--border)] px-4 py-3 md:hidden"
   >
     {
@@ -86,6 +88,10 @@ const prefix = withBase;
   let lastFocusedTrigger: HTMLElement | null = null;
 
   const closeNav = () => {
+    if (nav instanceof HTMLElement) {
+      nav.hidden = true;
+      nav.style.display = 'none';
+    }
     nav?.classList.add('hidden');
     nav?.classList.remove('flex');
     toggle?.setAttribute('aria-expanded', 'false');
@@ -96,6 +102,10 @@ const prefix = withBase;
   const openNav = () => {
     lastFocusedTrigger =
       document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (nav instanceof HTMLElement) {
+      nav.hidden = false;
+      nav.style.display = 'flex';
+    }
     nav?.classList.remove('hidden');
     nav?.classList.add('flex');
     toggle?.setAttribute('aria-expanded', 'true');

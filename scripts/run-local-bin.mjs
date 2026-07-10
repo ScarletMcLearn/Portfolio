@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawn } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 
@@ -39,19 +40,54 @@ if (!match?.groups?.target) {
 
 const entry = path.resolve(path.dirname(file), match.groups.target.replaceAll(/[\\/]/g, path.sep));
 
+const env = { ...process.env };
+
 if (bin === 'astro') {
-  process.env.ASTRO_TELEMETRY_DISABLED = '1';
+  env.ASTRO_TELEMETRY_DISABLED = '1';
 }
 
-const previousArgv = process.argv;
-process.argv = [process.execPath, entry, ...args];
+if (entry.endsWith('.mjs') || entry.endsWith('.js') || entry.endsWith('.cjs')) {
+  const child = spawn(process.execPath, [entry, ...args], {
+    cwd: root,
+    env,
+    stdio: 'inherit',
+  });
 
-try {
-  if (entry.endsWith('.mjs')) {
-    await import(pathToFileURL(entry).href);
-  } else {
-    require(entry);
+  child.on('exit', (code, signal) => {
+    if (signal) {
+      process.kill(process.pid, signal);
+      return;
+    }
+
+    process.exit(code ?? 0);
+  });
+
+  child.on('error', (error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+
+  const forwardSignal = (signal) => {
+    if (!child.killed) {
+      child.kill(signal);
+    }
+  };
+
+  process.on('SIGINT', forwardSignal);
+  process.on('SIGTERM', forwardSignal);
+
+  await new Promise(() => {});
+} else {
+  const previousArgv = process.argv;
+  process.argv = [process.execPath, entry, ...args];
+
+  try {
+    if (entry.endsWith('.mjs')) {
+      await import(pathToFileURL(entry).href);
+    } else {
+      require(entry);
+    }
+  } finally {
+    process.argv = previousArgv;
   }
-} finally {
-  process.argv = previousArgv;
 }

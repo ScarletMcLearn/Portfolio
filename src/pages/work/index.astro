@@ -88,6 +88,8 @@ const grouped = disciplineOrder.map((d) => ({
 
       sections.forEach((section) => {
         const matches = filter === 'all' || section.dataset.discipline === filter;
+        section.hidden = !matches;
+        section.style.display = matches ? '' : 'none';
         section.classList.toggle('hidden', !matches);
       });
     });

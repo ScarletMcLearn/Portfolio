@@ -21,7 +21,7 @@ export default defineConfig({
     // Tests run against the site served at the root path (SITE_BASE=/) so that
     // relative goto('/...') calls resolve correctly. Production builds for GitHub
     // Pages use SITE_BASE=/Portfolio via the deploy workflow — see DEPLOYMENT.md.
-    command: 'pnpm build && pnpm preview',
+    command: 'pixi run preview:e2e',
     url: 'http://localhost:4321',
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
