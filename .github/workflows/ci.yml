@@ -5,6 +5,16 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   test:
@@ -48,3 +58,22 @@ jobs:
         env:
           SITE_URL: https://scarletmclearn.github.io
           SITE_BASE: /Portfolio
+
+      - uses: actions/configure-pages@v5
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        with:
+          path: dist
+
+  deploy:
+    needs: test
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
