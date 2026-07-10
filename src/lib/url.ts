@@ -7,6 +7,10 @@
 export function withBase(path = ''): string {
   const base = import.meta.env.BASE_URL;
   const trimmedBase = base.endsWith('/') ? base.slice(0, -1) : base;
-  const trimmedPath = path.startsWith('/') ? path.slice(1) : path;
-  return trimmedPath ? `${trimmedBase}/${trimmedPath}` : `${trimmedBase}/`;
+  const hashIndex = path.indexOf('#');
+  const pathPart = hashIndex === -1 ? path : path.slice(0, hashIndex);
+  const hashPart = hashIndex === -1 ? '' : path.slice(hashIndex);
+  const trimmedPath = pathPart.startsWith('/') ? pathPart.slice(1) : pathPart;
+  const joined = trimmedPath ? `${trimmedBase}/${trimmedPath}` : trimmedBase || '/';
+  return `${joined}${hashPart}`;
 }
