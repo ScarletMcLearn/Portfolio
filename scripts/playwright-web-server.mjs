@@ -104,8 +104,8 @@ function sanitizeRequestPath(rawPath = '/') {
 
 async function fileExists(filePath) {
   try {
-    await access(filePath);
-    return true;
+    const fileStat = await stat(filePath);
+    return fileStat.isFile();
   } catch {
     return false;
   }
@@ -149,7 +149,12 @@ async function sendFile(response, filePath, status) {
     'Content-Type': contentType,
   });
 
-  createReadStream(filePath).pipe(response);
+  await new Promise((resolve, reject) => {
+    const stream = createReadStream(filePath);
+    stream.on('error', reject);
+    stream.on('end', resolve);
+    stream.pipe(response);
+  });
 }
 
 async function startServer() {
