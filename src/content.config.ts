@@ -118,7 +118,8 @@ function hasErrorCode(error: unknown): error is { code: unknown } {
 function caseStudyLoader(): Loader {
   return {
     name: 'case-study-loader',
-    async load({ config, parseData, renderMarkdown, store }) {
+    async load(context) {
+      const { config, store } = context;
       const contentDir = new URL('content/case-studies/', config.srcDir);
       const projectRoot = fileURLToPath(config.root);
 
@@ -156,8 +157,10 @@ function caseStudyLoader(): Loader {
         const id = relativeContentPath.replace(markdownExtension, '');
         const contents = await fs.readFile(fileUrl, 'utf8');
         const { body, data } = splitFrontmatter(contents);
-        const parsedData = await parseData({ data, filePath: relativePath, id });
-        const rendered = await renderMarkdown(body, { fileURL: pathToFileURL(absolutePath) });
+        const parsedData = await context.parseData({ data, filePath: relativePath, id });
+        const rendered = await context.renderMarkdown(body, {
+          fileURL: pathToFileURL(absolutePath),
+        });
 
         store.set({
           body,
