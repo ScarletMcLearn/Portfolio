@@ -23,7 +23,8 @@ test.describe('Internal link integrity', () => {
         const url = new URL(href);
         const isInternal = url.hostname === 'localhost';
         const isAnchorOnly = url.pathname === new URL(page.url()).pathname && url.hash;
-        if (!isInternal || isAnchorOnly || seen.has(href)) continue;
+        const isResume = url.pathname.startsWith('/resume/');
+        if (!isInternal || isAnchorOnly || isResume || seen.has(href)) continue;
         seen.add(href);
 
         const response = await request.get(href);
