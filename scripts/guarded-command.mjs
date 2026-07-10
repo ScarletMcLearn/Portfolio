@@ -71,7 +71,9 @@ function formatDuration(ms) {
   const seconds = Math.max(0, Math.floor(ms / 1000));
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-  return minutes === 0 ? `${remainingSeconds}s` : `${minutes}m ${remainingSeconds.toString().padStart(2, '0')}s`;
+  return minutes === 0
+    ? `${remainingSeconds}s`
+    : `${minutes}m ${remainingSeconds.toString().padStart(2, '0')}s`;
 }
 
 function commandText() {
@@ -121,7 +123,12 @@ function getSpawnCommand() {
   if (process.platform === 'win32' && (executableExt === '.bat' || executableExt === '.cmd')) {
     return {
       executable: 'cmd.exe',
-      args: ['/d', '/s', '/c', [quoteForCmd(executable), ...command.slice(1).map(quoteForCmd)].join(' ')],
+      args: [
+        '/d',
+        '/s',
+        '/c',
+        [quoteForCmd(executable), ...command.slice(1).map(quoteForCmd)].join(' '),
+      ],
     };
   }
 
@@ -225,11 +232,14 @@ if (heartbeatMs > 0) {
 
 if (idleTimeoutMs > 0) {
   timers.push(
-    setInterval(() => {
-      if (Date.now() - lastOutputAt >= idleTimeoutMs) {
-        failFast(`exceeded idle-timeout=${idleTimeoutMs}ms`);
-      }
-    }, Math.min(idleTimeoutMs, 5_000)),
+    setInterval(
+      () => {
+        if (Date.now() - lastOutputAt >= idleTimeoutMs) {
+          failFast(`exceeded idle-timeout=${idleTimeoutMs}ms`);
+        }
+      },
+      Math.min(idleTimeoutMs, 5_000),
+    ),
   );
 }
 

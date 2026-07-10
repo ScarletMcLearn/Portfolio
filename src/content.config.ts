@@ -56,7 +56,10 @@ function parseFrontmatterBlock(frontmatter: string): FrontmatterData {
     if (rawValue === '>') {
       const blockLines: string[] = [];
       let cursor = index + 1;
-      while (cursor < lines.length && (lines[cursor].startsWith(' ') || lines[cursor].trim() === '')) {
+      while (
+        cursor < lines.length &&
+        (lines[cursor].startsWith(' ') || lines[cursor].trim() === '')
+      ) {
         blockLines.push(lines[cursor].trim());
         cursor += 1;
       }
@@ -124,8 +127,13 @@ function caseStudyLoader(): Loader {
           const entries = await fs.readdir(directory, { withFileTypes: true });
           const urls = await Promise.all(
             entries.map((entry) => {
-              const childUrl = new URL(entry.isDirectory() ? `${entry.name}/` : entry.name, directory);
-              return entry.isDirectory() ? readMarkdownFiles(childUrl) : Promise.resolve([childUrl]);
+              const childUrl = new URL(
+                entry.isDirectory() ? `${entry.name}/` : entry.name,
+                directory,
+              );
+              return entry.isDirectory()
+                ? readMarkdownFiles(childUrl)
+                : Promise.resolve([childUrl]);
             }),
           );
 

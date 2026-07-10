@@ -39,7 +39,9 @@ function formatDuration(ms) {
   const seconds = Math.max(0, Math.floor(ms / 1000));
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-  return minutes === 0 ? `${remainingSeconds}s` : `${minutes}m ${remainingSeconds.toString().padStart(2, '0')}s`;
+  return minutes === 0
+    ? `${remainingSeconds}s`
+    : `${minutes}m ${remainingSeconds.toString().padStart(2, '0')}s`;
 }
 
 function runAstroBuild() {
@@ -47,21 +49,25 @@ function runAstroBuild() {
   console.error(`[playwright-web-server] build start timeout=${buildTimeoutMs}ms`);
 
   return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [
-      guardedCommand,
-      `--timeout=${buildTimeoutMs}`,
-      '--heartbeat=15000',
-      '--idle-timeout=90000',
-      '--label=preview-e2e-build',
-      '--',
-      'pixi',
-      'run',
-      'build',
-    ], {
-      cwd: projectRoot,
-      env: astroEnv,
-      stdio: 'inherit',
-    });
+    const child = spawn(
+      process.execPath,
+      [
+        guardedCommand,
+        `--timeout=${buildTimeoutMs}`,
+        '--heartbeat=15000',
+        '--idle-timeout=90000',
+        '--label=preview-e2e-build',
+        '--',
+        'pixi',
+        'run',
+        'build',
+      ],
+      {
+        cwd: projectRoot,
+        env: astroEnv,
+        stdio: 'inherit',
+      },
+    );
 
     child.on('error', (error) => {
       reject(error);
@@ -74,7 +80,9 @@ function runAstroBuild() {
       }
 
       if (code === 0) {
-        console.error(`[playwright-web-server] build complete elapsed=${formatDuration(Date.now() - startedAt)}`);
+        console.error(
+          `[playwright-web-server] build complete elapsed=${formatDuration(Date.now() - startedAt)}`,
+        );
         resolve();
         return;
       }
