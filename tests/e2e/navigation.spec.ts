@@ -5,7 +5,7 @@ test.describe('Navigation', () => {
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Primary' });
     await expect(nav.getByRole('link', { name: 'Work' })).toBeVisible();
-    await expect(nav.getByRole('link', { name: 'Résumés' })).toBeVisible();
+    await expect(nav.getByRole('link', { name: 'Resumes' })).toBeVisible();
 
     await nav.getByRole('link', { name: 'Work' }).click();
     await expect(page).toHaveURL(/\/work\/?$/);
@@ -30,7 +30,7 @@ test.describe('Navigation', () => {
       page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Work' }),
     ).toHaveAttribute('href', /\/work$/);
     await expect(
-      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Résumés' }),
+      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Resumes' }),
     ).toHaveAttribute('href', /\/resumes$/);
     await expect(page.getByRole('link', { name: 'Explore Software Engineering' })).toHaveAttribute(
       'href',
@@ -40,7 +40,7 @@ test.describe('Navigation', () => {
       'href',
       /\/work$/,
     );
-    await expect(page.getByRole('link', { name: 'View Résumés' })).toHaveAttribute(
+    await expect(page.getByRole('link', { name: 'View Resumes' })).toHaveAttribute(
       'href',
       /\/resumes$/,
     );

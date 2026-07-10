@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Résumés', () => {
-  test('resumes page lists all three résumé variants', async ({ page }) => {
+test.describe('Resumes', () => {
+  test('resumes page lists all three resume variants', async ({ page }) => {
     await page.goto('/resumes');
-    await expect(page.getByRole('heading', { name: 'Software Engineer Résumé' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Software Engineer Resume' })).toBeVisible();
     await expect(
-      page.getByRole('heading', { name: 'SQA Automation Engineer Résumé' }),
+      page.getByRole('heading', { name: 'SQA Automation Engineer Resume' }),
     ).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Data Scientist Résumé' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Data Scientist Resume' })).toBeVisible();
   });
 
   test('all résumé PDF links resolve with a 200 status', async ({ page, request }) => {
@@ -23,9 +23,9 @@ test.describe('Résumés', () => {
     }
   });
 
-  test('hero "View Résumés" CTA links to the résumés page', async ({ page }) => {
+  test('hero "View Resumes" CTA links to the resumes page', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: 'View Résumés' }).click();
+    await page.getByRole('link', { name: 'View Resumes' }).click();
     await expect(page).toHaveURL(/\/resumes\/?$/);
   });
 });

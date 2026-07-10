@@ -25,7 +25,15 @@ test.describe('Accessibility', () => {
     await page.keyboard.press('Tab'); // skip link
     await page.keyboard.press('Tab'); // logo link
     await page.keyboard.press('Tab'); // first nav link
-    const active = await page.evaluate(() => document.activeElement?.textContent?.trim());
+    const active = await page.evaluate(() => {
+      const activeElement = document.activeElement;
+      if (activeElement == null) {
+        return '';
+      }
+
+      const textContent = activeElement.textContent;
+      return typeof textContent === 'string' ? textContent.trim() : '';
+    });
     expect(active).toBe('Home');
   });
 

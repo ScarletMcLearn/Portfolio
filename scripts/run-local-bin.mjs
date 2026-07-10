@@ -14,9 +14,10 @@ if (!bin) {
 
 const root = process.cwd();
 const binDir = path.join(root, 'node_modules', '.bin');
-const candidates = process.platform === 'win32'
-  ? [path.join(binDir, `${bin}.cmd`), path.join(binDir, `${bin}.ps1`), path.join(binDir, bin)]
-  : [path.join(binDir, bin)];
+const candidates =
+  process.platform === 'win32'
+    ? [path.join(binDir, `${bin}.cmd`), path.join(binDir, `${bin}.ps1`), path.join(binDir, bin)]
+    : [path.join(binDir, bin)];
 
 const file = candidates.find((candidate) => fs.existsSync(candidate));
 

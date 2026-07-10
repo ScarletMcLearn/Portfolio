@@ -4,7 +4,7 @@
  * slash (Astro's behavior here varies with the `base` / `trailingSlash`
  * config combination, so this must not assume either).
  */
-export function withBase(path: string = ''): string {
+export function withBase(path = ''): string {
   const base = import.meta.env.BASE_URL;
   const trimmedBase = base.endsWith('/') ? base.slice(0, -1) : base;
   const trimmedPath = path.startsWith('/') ? path.slice(1) : path;
